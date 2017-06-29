@@ -78,6 +78,9 @@ options {
 <% if !@allow_transfer.empty? -%>
     allow-transfer { <%= @allow_transfer.join("; ") %>; };
 <% end -%>
+<% if !@also_notify.empty? -%>
+    also-notify { <%= @also_notify.join("; ") %>; };
+<% end -%>
 <% if !@check_names.empty? -%>
 <% @check_names.each do |line| -%>
     check-names <%= line %>;
@@ -180,4 +183,3 @@ include "/etc/named.rfc1912.zones";
 include "<%= filename %>";
 <% end -%>
 <% end -%>
-

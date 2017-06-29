@@ -41,6 +41,8 @@
 #   Array of IP addrs or ACLs to allow recursion from. Default: empty
 #  $allow_transfer:
 #   Array of IP addrs or ACLs to allow transfer to. Default: empty
+#  $also_notify:
+#   Array of IP addrs to notify upon zone change events. Default: empty
 #  $check_names:
 #   Array of check-names strings. Example: [ 'master ignore' ]. Default: empty
 #  $extra_options:
@@ -80,7 +82,7 @@
 #        'masters { mymasters; }',
 #      ],
 #    }
-#    keys                 => { 
+#    keys                 => {
 #      'example.org-tsig' => [
 #        'algorithm hmac-md5',
 #        'secret "aaabbbcccddd"',
@@ -109,6 +111,7 @@ define bind::server::conf (
   $recursion              = 'yes',
   $allow_recursion        = [],
   $allow_transfer         = [],
+  $also_notify            = [],
   $check_names            = [],
   $extra_options          = {},
   $dnssec_enable          = 'yes',
