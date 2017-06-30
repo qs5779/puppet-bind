@@ -54,10 +54,13 @@
 #   Enable DNSSEC validation. Default: 'yes'
 #  $dnssec_lookaside:
 #   DNSSEC lookaside type. Default: 'auto'
+#  $servers:
+#   Hash of servers and their options. The key is the server ipaddress
+#   and the value is a hash of options
 #  $zones:
 #   Hash of managed zones and their configuration. The key is the zone name
 #   and the value is an array of config lines. Default: empty
-#  $tsig:
+#  $keys:
 #   Hash of managed tsig keys and their configuration. The key is the tsig keys name
 #   and the value is an array of config lines. Default: empty
 #  $includes:
@@ -87,6 +90,13 @@
 #        'algorithm hmac-md5',
 #        'secret "aaabbbcccddd"',
 #      ],
+#    }
+#    servers              => {
+# see http://www.zytrax.com/books/dns/ch7/server.html for valid options/values
+#      '10.6.6.6' => {
+#        'keys' => [ 'example.org-tsig' ],
+#        'transfer-format' => 'many-answers',
+#      },
 #    }
 #  }
 #
@@ -119,6 +129,7 @@ define bind::server::conf (
   $dnssec_lookaside       = 'auto',
   $zones                  = {},
   $keys                   = {},
+  $servers                = {},
   $includes               = [],
   $views                  = {},
 ) {
