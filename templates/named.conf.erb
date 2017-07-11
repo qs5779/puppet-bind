@@ -117,6 +117,9 @@ options {
     bindkeys-file "/etc/named.iscdlv.key";
 };
 
+<% if scope['::bind::logging_config'] -%>
+include "<%= scope['::bind::logging_config'] %>";
+<% else -%>
 logging {
     channel main_log {
         file "/var/log/named/named.log" versions 3 size 5m;
@@ -132,6 +135,7 @@ logging {
         null;
     };
 };
+<% end -%>
 <% if !@views.empty? -%>
 
 <% @views.sort_by {|key,value| key}.each do |key,value| -%>

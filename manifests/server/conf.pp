@@ -132,6 +132,7 @@ define bind::server::conf (
   $servers                = {},
   $includes               = [],
   $views                  = {},
+  $logging_config         = undef,
 ) {
 
   # Everything is inside a single template
