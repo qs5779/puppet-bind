@@ -117,8 +117,8 @@ options {
     bindkeys-file "/etc/named.iscdlv.key";
 };
 
-<% if scope['::bind::logging_config'] -%>
-include "<%= scope['::bind::logging_config'] %>";
+<% if @logging_config -%>
+include "<%= @logging_config %>";
 <% else -%>
 logging {
     channel main_log {
