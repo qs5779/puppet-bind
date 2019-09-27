@@ -6,8 +6,12 @@ class bind::service (
 ) inherits ::bind::params {
 
   if $service_reload {
+    $servicecmd = case $facts['os']['family'] ? {
+      'Gentoo' => 'rc-service',
+      default  => 'service',
+    }
     Service[$servicename] {
-      restart => "service ${servicename} reload",
+      restart => "${servicecmd} ${servicename} reload",
     }
   }
 
@@ -17,5 +21,5 @@ class bind::service (
     hasstatus => true,
     require   => Class['bind::package'],
   }
-  
+
 }

@@ -36,6 +36,14 @@ class bind::params {
       $file_hint         = 'named.ca'
       $file_rfc1912      = '/etc/named.rfc1912.zones'
     }
+    'Gentoo': {
+      $packagenameprefix = 'bind'
+      $servicename       = 'named'
+      $binduser          = 'root'
+      $bindgroup         = 'named'
+      $file_hint         = 'named.cache'
+      $file_rfc1912      = '/etc/named.rfc1912.zones'
+    }
     default: {
       $packagenameprefix = 'bind'
       $servicename       = 'named'
