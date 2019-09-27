@@ -6,7 +6,7 @@ class bind::service (
 ) inherits ::bind::params {
 
   if $service_reload {
-    $servicecmd = case $facts['os']['family'] ? {
+    $servicecmd = $facts['os']['family'] ? {
       'Gentoo' => 'rc-service',
       default  => 'service',
     }
